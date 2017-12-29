@@ -1,166 +1,141 @@
+//Rover 
 var myRover = {
   position: [0,0],
   direction: 'N'
 };
 
-var grid = [[9,8,7,6,5,4,3,2,1,0],[9,8,7,6,5,4,3,2,1,0]];
+//10 x 10 grid
+var grid = [
+  [9,8,7,6,5,4,3,2,1,0],
+  [9,8,7,6,5,4,3,2,1,0]
+];
 
 
+//forward
 function goForward(rover) {
-  switch(rover.direction) {
-    case 'N':
-      rover.position[0]++;
-      break;
-    case 'E':
-      rover.position[1]++;
-      break;
-    case 'S':
-      rover.position[0]--;
-      break;
-    case 'W':
-      rover.position[1]--;
-      break;
-  }
-  console.log("New Rover Position: [" + rover.position[0] + ", " + rover.position[1] + "]");
-}
-
-goForward(myRover);
-
-
-function goBackwards(rover) {
-  switch(rover.direction) {
-    case 'N':
-      rover.position[0]--;
-      break;
-    case 'E':
-      rover.position[1]--;
-      break;
-    case 'S':
-      rover.position[0]++;
-      break;
-    case 'W':
-      rover.position[1]++;
-      break;
-  }
-  console.log("New Rover Position: [" + rover.position[0] + ", " + rover.position[1] + "]");
-}
-
-goBackwards(myRover);
-
-
-
-function turnLeft(rover) {
   switch (rover.direction) {
     case 'N':
-      rover.direction = 'W';
+      rover.position[0]++
       break;
     case 'E':
-      rover.direction = 'N';
+      rover.position[1]++
       break;
     case 'S':
-      rover.direction = 'E';
+      rover.position[0]--
       break;
     case 'W':
-      rover.direction = 'S';
+      rover.position[1]--
       break;
-  }
-		console.log("New Rover Direction: " + rover.direction);
-}
+  };
+};
 
-
-
-function turnRight(rover) {
+//backward
+function goBackward(rover) {
   switch (rover.direction) {
     case 'N':
-      rover.direction = 'E';
+      rover.position[0]--
       break;
     case 'E':
-      rover.direction = 'S';
+      rover.position[1]--
       break;
     case 'S':
-      rover.direction = 'W';
+      rover.position[0]++
       break;
     case 'W':
-      rover.direction = 'N';
+      rover.position[1]++
       break;
-  }
-		console.log("New Rover Direction: " + rover.direction);
-}
+  };
+};
+
+
+//left turn
+function leftTurn(rover) {
+  switch (rover.direction) {
+    case 'N':
+      rover.direction = 'W'
+      break;
+    case 'E':
+      rover.direction = 'N'
+      break;
+    case 'S':
+      rover.direction = 'E'
+      break;
+    case 'W':
+      rover.direction = 'S'
+      break;
+  };
+};
+
+//right turn
+function rightTurn(rover) {
+  switch (rover.direction) {
+    case 'N':
+      rover.direction = 'E'
+      break;
+    case 'E':
+      rover.direction = 'S'
+      break;
+    case 'S':
+      rover.direction = 'W'
+      break;
+    case 'W':
+      rover.direction = 'N'
+      break;
+  };
+};
 
 
 
-var instruction = prompt("In which direction should the mars rover move? Choose 'f','b','l' or 'r'.");
 
+//Move rover
 function move(rover) {
-  switch (instruction) {
-    case 'f':
-    goForward(rover);
-    if (rover.position[0] > 9) {
-      prompt("Choose another direction.");
-      move(myRover);
-    } else if (rover.position[1] > 9) {
-      prompt("Choose another direction.");
-      move(myRover);
-    } else if (rover.position[0] < 0) {
-      prompt("Choose another direction.");
-      move(myRover);
-    } else if (rover.position[1] < 0) {
-      prompt("Choose another direction.");
-      move(myRover);
+  var input = prompt("Choose a direction: 'f','b','r','l'"); 
+    switch (input.toLowerCase()) {
+      case 'f':
+        goForward(rover);
+        break;
+      case 'b':
+        goBackward(rover);
+        break;
+      case 'l':
+        leftTurn(rover);
+        break;
+      case 'r':
+        rightTurn(rover);
+        break
+      default:
+        console.log('Invalid input');
+        break;
     }
-    break;
-    case 'b':
-    goForward(rover);
-    if (rover.position[0] > 9) {
-      prompt("Choose another direction.");
-      move(myRover);
-    } else if (rover.position[1] > 9) {
-      prompt("Choose another direction.");
-      move(myRover);
-    } else if (rover.position[0] < 0) {
-      prompt("Choose another direction.");
-      move(myRover);
-    } else if (rover.position[1] < 0) {
-      prompt("Choose another direction.");
-      move(myRover);
-    }
-    break;
-    case 'l':
-    goForward(rover);
-    if (rover.position[0] > 9) {
-      prompt("Choose another direction.");
-      move(myRover);
-    } else if (rover.position[1] > 9) {
-      prompt("Choose another direction.");
-      move(myRover);
-    } else if (rover.position[0] < 0) {
-      prompt("Choose another direction.");
-      move(myRover);
-    } else if (rover.position[1] < 0) {
-      prompt("Choose another direction.");
-      move(myRover);
-    }
-    break;
-    case 'r':
-    goForward(rover);
-    if (rover.position[0] > 9) {
-      prompt("Choose another direction.");
-      move(myRover);
-    } else if (rover.position[1] > 9) {
-      prompt("Choose another direction.");
-      move(myRover);
-    } else if (rover.position[0] < 0) {
-      prompt("Choose another direction.");
-      move(myRover);
-    } else if (rover.position[1] < 0) {
-      prompt("Choose another direction.");
-      move(myRover);
-    }
-    break;
-    default:
-    prompt("Choose f','b','l' or 'r'.");
-    break;
-  }
+    if (rover.position[0] === 10) {
+      rover.position[0] === 9;
+      console.log("You can't move the rover in this direction, it is falling of the planet!");
+    } else if (rover.position[1] === 10) {
+      rover.position[1] === 9;
+      console.log("You can't move the rover in this direction, it is falling of the planet!");  
+    } else if (rover.position[0] === -1) {
+      rover.position[0] === 0;
+      console.log("You can't move the rover in this direction, it is falling of the planet!");  
+    } else if (rover.position[1] === -1) {
+      rover.position[1] === 0;
+      console.log("You can't move the rover in this direction, it is falling of the planet!");  
+    } 
+  console.log("The rovers position is [" + rover.position[0] + "," + rover.position[1] + "] and it is facing in this direction: " + rover.direction);
 }
+
 
 move(myRover);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
