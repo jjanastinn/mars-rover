@@ -120,7 +120,7 @@ function move(rover) {
       rover.position[1] === 0;
       console.log("You can't move the rover in this direction, it is falling of the planet!");  
     } 
-  console.log("The rovers position is [" + rover.position[0] + "," + rover.position[1] + "] and it is facing in this direction: " + rover.direction);
+    console.log("The rovers position is [" + rover.position[0] + "," + rover.position[1] + "] and it is facing in this direction: " + rover.direction);
 }
 
 
