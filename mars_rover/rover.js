@@ -1,3 +1,4 @@
+
 //Rover 
 var myRover = {
   position: [0,0],
@@ -10,6 +11,7 @@ var grid = [
   [9,8,7,6,5,4,3,2,1,0]
 ];
 
+var isRunning = true;
 
 //forward
 function goForward(rover) {
@@ -89,7 +91,7 @@ function rightTurn(rover) {
 
 //Move rover
 function move(rover) {
-  var input = prompt("Choose a direction: 'f','b','r','l'"); 
+  var input = prompt("Choose a direction: 'f','b','r','l','cancel'"); 
     switch (input.toLowerCase()) {
       case 'f':
         goForward(rover);
@@ -103,28 +105,40 @@ function move(rover) {
       case 'r':
         rightTurn(rover);
         break
+      case 'cancel':
+        isRunning = false;
+        break;
       default:
         console.log('Invalid input');
         break;
     }
     if (rover.position[0] === 10) {
-      rover.position[0] === 9;
+      rover.position[0] === 1;
       console.log("You can't move the rover in this direction, it is falling of the planet!");
     } else if (rover.position[1] === 10) {
-      rover.position[1] === 9;
+      rover.position[1] === 1;
       console.log("You can't move the rover in this direction, it is falling of the planet!");  
     } else if (rover.position[0] === -1) {
-      rover.position[0] === 0;
+      rover.position[0] === 9;
       console.log("You can't move the rover in this direction, it is falling of the planet!");  
     } else if (rover.position[1] === -1) {
-      rover.position[1] === 0;
+      rover.position[1] === 9;
       console.log("You can't move the rover in this direction, it is falling of the planet!");  
     } 
     console.log("The rovers position is [" + rover.position[0] + "," + rover.position[1] + "] and it is facing in this direction: " + rover.direction);
 }
 
+while(isRunning) {
+  move(myRover);
+}
 
-move(myRover);
+
+
+
+
+
+
+
 
 
 
