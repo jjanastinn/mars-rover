@@ -113,16 +113,16 @@ function move(rover) {
         break;
     }
     if (rover.position[0] === 10) {
-      rover.position[0] === 1;
+      rover.position[0] = 1;
       console.log("You can't move the rover in this direction, it is falling of the planet!");
     } else if (rover.position[1] === 10) {
-      rover.position[1] === 1;
+      rover.position[1] = 1;
       console.log("You can't move the rover in this direction, it is falling of the planet!");  
     } else if (rover.position[0] === -1) {
-      rover.position[0] === 9;
+      rover.position[0] = 9;
       console.log("You can't move the rover in this direction, it is falling of the planet!");  
     } else if (rover.position[1] === -1) {
-      rover.position[1] === 9;
+      rover.position[1] = 9;
       console.log("You can't move the rover in this direction, it is falling of the planet!");  
     } 
     console.log("The rovers position is [" + rover.position[0] + "," + rover.position[1] + "] and it is facing in this direction: " + rover.direction);
